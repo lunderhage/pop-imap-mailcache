@@ -1,0 +1,11 @@
+version: "2.0"
+services:
+  dovecot:
+    image: lunderhage/dovecot:0.1
+    build: .
+    ports:
+      - 993:993
+      - 143:143
+    environment:
+      - USER=andreas
+      - PASSWORD=hahaha
