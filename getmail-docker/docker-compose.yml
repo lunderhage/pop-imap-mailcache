@@ -1,0 +1,15 @@
+version: "2.0"
+services:
+  getmail:
+    image: lunderhage/getmail:1.0
+    build: .
+    volumes:
+      - mail:/mail
+    environment:
+      - POP_SERVER=$POP_SERVER
+      - POP_USER=$POP_USER
+      - POP_PASSWORD=$POP_PASSWORD
+      - POP_INTERVAL=60
+      - POP_MAILBOX=popuser
+volumes:
+  mail:
