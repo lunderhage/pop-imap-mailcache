@@ -1,0 +1,30 @@
+version: "2.0"
+services:
+  dovecot:
+    image: lunderhage/dovecot:1.0
+    ports:
+      - 993:993
+      - 143:143
+    volumes:
+      - mail:/mail
+    environment:
+      - IMAP_USER=$IMAP_USER
+      - IMAP_PASSWORD=$IMAP_PASSWORD
+      - IMAP_SSL_DH_BITS=512
+      - IMAP_SSL_BITS=1024
+      - IMAP_SSL_OU=IMAP Mail Cache
+      - IMAP_SSL_CN=imap.mail.cache.org
+    restart: always
+  getmail:
+    image: lunderhage/getmail:1.0
+    volumes:
+      - mail:/mail
+    environment:
+      - POP_SERVER=$POP_SERVER
+      - POP_USER=$POP_USER
+      - POP_PASSWORD=$POP_PASSWORD
+      - POP_INTERVAL=60
+      - POP_MAILBOX=$IMAP_USER
+    restart: always
+volumes:
+  mail:
