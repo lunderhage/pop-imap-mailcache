@@ -1,11 +1,19 @@
 version: "2.0"
 services:
   dovecot:
-    image: lunderhage/dovecot:0.1
+    image: lunderhage/dovecot:1.0
     build: .
     ports:
       - 993:993
       - 143:143
     environment:
-      - USER=andreas
-      - PASSWORD=hahaha
+      - IMAP_USER=andreas
+      - IMAP_PASSWORD=hahaha
+      - IMAP_SSL_DH_BITS=512
+      - IMAP_SSL_BITS=1024
+      - IMAP_SSL_OU=Private Stash
+      - IMAP_SSL_CN=secret.net
+    volumes:
+      - "mail:/mail"
+volumes:
+  mail:

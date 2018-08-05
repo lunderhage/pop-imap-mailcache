@@ -1,0 +1,31 @@
+[ req ]
+default_bits = ${IMAP_SSL_BITS}
+encrypt_key = yes
+distinguished_name = req_dn
+x509_extensions = cert_type
+prompt = no
+
+[ req_dn ]
+# country (2 letter code)
+#C=FI
+
+# State or Province Name (full name)
+#ST=
+
+# Locality Name (eg. city)
+#L=Helsinki
+
+# Organization (eg. company)
+#O=Dovecot
+
+# Organizational Unit Name (eg. section)
+OU=${IMAP_SSL_OU}
+
+# Common Name (*.example.com is also possible)
+CN=${IMAP_SSL_CN}
+
+# E-mail contact
+#emailAddress=postmaster@example.com
+
+[ cert_type ]
+nsCertType = server
